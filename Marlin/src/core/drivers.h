@@ -34,6 +34,7 @@
 #define _L6474              0x6474
 #define _L6480              0x6480
 #define _POWERSTEP01        0xF00D
+#define _SERVOSTEPPER       0x5555
 #define _TB6560             0x6560
 #define _TB6600             0x6600
 #define _TMC2100            0x2100
@@ -85,6 +86,8 @@
 #define HAS_DRIVER(T) (  AXIS_DRIVER_TYPE_X(T)  || AXIS_DRIVER_TYPE_Y(T)  || AXIS_DRIVER_TYPE_Z(T)  \
                       || AXIS_DRIVER_TYPE_X2(T) || AXIS_DRIVER_TYPE_Y2(T) || AXIS_DRIVER_TYPE_Z2(T) \
                       || AXIS_DRIVER_TYPE_Z3(T) || AXIS_DRIVER_TYPE_Z4(T) || HAS_E_DRIVER(T) )
+
+#define HAS_SERVOSTEPPER HAS_DRIVER(SERVOSTEPPER)
 
 //
 // Trinamic Stepper Drivers

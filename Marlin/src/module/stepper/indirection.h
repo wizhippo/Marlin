@@ -44,6 +44,10 @@
   #include "trinamic.h"
 #endif
 
+#if HAS_SERVOSTEPPER
+  #include "servostepper.h"
+#endif
+
 void restore_stepper_drivers();  // Called by PSU_ON
 void reset_stepper_drivers();    // Called by settings.load / settings.reset
 
@@ -92,11 +96,15 @@ void reset_stepper_drivers();    // Called by settings.load / settings.reset
   #define Z_DIR_WRITE(STATE) WRITE(Z_DIR_PIN,STATE)
   #define Z_DIR_READ() bool(READ(Z_DIR_PIN))
 #endif
-#define Z_STEP_INIT() SET_OUTPUT(Z_STEP_PIN)
+#ifndef Z_STEP_INIT
+  #define Z_STEP_INIT() SET_OUTPUT(Z_STEP_PIN)
+#endif
 #ifndef Z_STEP_WRITE
   #define Z_STEP_WRITE(STATE) WRITE(Z_STEP_PIN,STATE)
 #endif
-#define Z_STEP_READ() bool(READ(Z_STEP_PIN))
+#ifndef Z_STEP_READ
+  #define Z_STEP_READ() bool(READ(Z_STEP_PIN))
+#endif
 
 // X2 Stepper
 #if HAS_X2_ENABLE
